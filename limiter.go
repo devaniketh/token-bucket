@@ -25,7 +25,6 @@ func NewTokenBucket(capacity int, ratePerSecond int) *TokenBucket {
 func (tb *TokenBucket) refill() {
 	now := time.Now()
 	elapsed := now.Sub(tb.lastRefill)
-
 	newTokens := int(elapsed / tb.fillInterval)
 	if newTokens > 0 {
 		tb.tokens = min(tb.capacity, tb.tokens+newTokens)
